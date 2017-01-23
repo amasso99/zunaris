@@ -1,6 +1,7 @@
+package Model.Physics.StaticObjects;
+
+import Model.Physics.World.WorldObject;
 import View.Common.DrawingPanel;
-import View.World.WorldObject;
-import javafx.geometry.Bounds;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
@@ -21,7 +22,7 @@ public class ObjectRectangle extends WorldObject {
 
     @Override
     public void draw(DrawingPanel dp, Graphics2D g2d) {
-        g2d.setColor(Color.BLUE);
+        g2d.setColor(Color.BLACK);
         g2d.fill(rectangle);
     }
 
@@ -31,7 +32,7 @@ public class ObjectRectangle extends WorldObject {
     }
 
     @Override
-    public Bounds getBounds() {
-        return null;
+    public Shape getBounds() {
+        return rectangle;
     }
 }

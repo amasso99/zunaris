@@ -8,7 +8,6 @@ import java.util.ArrayList;
  */
 public class MainFrame extends JFrame {
 
-    // Attribute
 
     // Referenzen
     private DrawingPanel activePanel;
@@ -51,6 +50,10 @@ public class MainFrame extends JFrame {
     public void addNewDrawingPanel(){
         DrawingPanel tempDB = new DrawingPanel();
         panels.add(tempDB);
+    }
+
+    public void addCustomDrawingPanel(DrawingPanel panel){
+        panels.add(panel);
     }
 
     /**

@@ -1,11 +1,9 @@
-package View.World;
+package Model.Physics.World;
 
-import View.Common.DrawableObject;
 import View.Common.DrawingPanel;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  * Created by Amasso on 02.01.2017.
@@ -13,9 +11,14 @@ import java.util.Iterator;
 public class PhysicalWorldPanel extends DrawingPanel {
 
     private ArrayList<WorldObject> worldObjects;
+    private ArrayList<DynamicWorldObject> dynamicWorldObjects;
+    private int gravity;
 
     public PhysicalWorldPanel(){
         worldObjects = new ArrayList<WorldObject>();
+        dynamicWorldObjects = new ArrayList<DynamicWorldObject>();
+
+        gravity = 10;
 
     }
 
@@ -26,27 +29,23 @@ public class PhysicalWorldPanel extends DrawingPanel {
     }
 
     private void update(){
-        Iterator<WorldObject> iterator = worldObjects.iterator();
-        while (iterator.hasNext()){
-            WorldObject temp = iterator.next();
-            if(temp instanceof PhysicalObject){
-                temp = (PhysicalObject) temp;
-                for (int i = 0; i < worldObjects.size(); i++) {
-                    if(worldObjects.get(i).intersects(temp)){
-
-                    }else{
-
-                    }
-                }
+        for(DynamicWorldObject object: dynamicWorldObjects){
+            for (WorldObject worldObject: worldObjects){
+                object.handleCollision(worldObject,gravity);
             }
         }
     }
 
     public void addWorldObject(WorldObject worldObject){
         worldObjects.add(worldObject);
+        if(worldObject instanceof DynamicWorldObject){
+            dynamicWorldObjects.add((DynamicWorldObject) worldObject);
+        }
+        super.addDrawingObject(worldObject);
     }
 
     public void removeWorldObject(WorldObject worldObject){
         worldObjects.remove(worldObject);
+        super.removeDrawingObject(worldObject);
     }
 }

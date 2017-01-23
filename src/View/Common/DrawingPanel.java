@@ -35,7 +35,7 @@ public class DrawingPanel extends JPanel implements ActionListener, KeyListener,
         timer.start();
 
         cam = new Camera();
-        cam.setTargetPosition(1000,0);
+        cam.setTargetPosition(0,0);
         
     }
 

@@ -1,3 +1,6 @@
+import Model.Entity.TestMovementObject;
+import Model.Physics.StaticObjects.ObjectRectangle;
+import Model.Physics.World.PhysicalWorldPanel;
 import View.Common.MainFrame;
 
 /**
@@ -5,12 +8,12 @@ import View.Common.MainFrame;
  */
 public class Test {
     public static void main(String[] args) {
-        MainFrame frame = new MainFrame("Hallo",0,0,500,500);
-        frame.addNewDrawingPanel();
-        for (int i = 0; i < 200; i++) {
-            frame.getActiveDrawingPanel().addDrawingObject(new ObjectRectangle(100+i*50, 100+i*10, 20, 20));
-
-        }
+        MainFrame frame = new MainFrame("Hallo",0,0,500,1000);
+        PhysicalWorldPanel panel = new PhysicalWorldPanel();
+        frame.addCustomDrawingPanel(panel);
+        frame.setActiveDrawingPanel(1);
+        panel.addWorldObject(new ObjectRectangle(0,400,1000,100));
+        panel.addWorldObject(new TestMovementObject(0,0));
 
     }
 }
